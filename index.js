@@ -40,6 +40,22 @@ app.get("/movies", (req, res) => {
     });
 });
 
+app.get("/actors", (req, res) => {
+    const sql = "SELECT * FROM actors";
+    db.query(sql, (err, results) => {
+        if (err) return res.status(500).json(err);
+        res.json(results);
+    });
+});
+
+app.get("/producers", (req, res) => {
+    const sql = "SELECT * FROM producers";
+    db.query(sql, (err, results) => {
+        if (err) return res.status(500).json(err);
+        res.json(results);
+    });
+});
+
 app.get("/movies/:id", (req, res) => {
     const sql = "SELECT * FROM movies WHERE id = ?";
     db.query(sql, [req.params.id], (err, result) => {
